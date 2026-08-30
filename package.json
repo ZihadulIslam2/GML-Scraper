@@ -1,0 +1,17 @@
+{
+  "name": "gmapscraper",
+  "version": "1.0.0",
+  "description": "Google Maps lead scraper with Playwright + email extraction + CSV export",
+  "private": true,
+  "scripts": {
+    "install:all": "npm install --prefix backend && npm install --prefix frontend",
+    "setup:browser": "npm run browsers --prefix backend",
+    "dev": "concurrently -n api,web -c blue,green \"npm run dev --prefix backend\" \"npm run dev --prefix frontend\"",
+    "start:api": "npm start --prefix backend",
+    "start:web": "npm start --prefix frontend",
+    "build:web": "npm run build --prefix frontend"
+  },
+  "devDependencies": {
+    "concurrently": "^9.0.0"
+  }
+}

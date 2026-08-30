@@ -1,0 +1,10 @@
+node_modules/
+dist/
+.next/
+out/
+.env
+.env.local
+*.log
+scraped-output/
+data/
+.DS_Store
