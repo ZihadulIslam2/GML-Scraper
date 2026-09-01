@@ -68,6 +68,7 @@ node src/cli.js "Dentist" "Dallas, Texas" 100
 ```
 
 Options:
+
 - `--no-emails` — skip the website email enrichment stage (much faster)
 - `--concurrency=N` — how many websites to visit in parallel (default 4)
 - `--pages=N` — how many pages per website to visit (default 3)
@@ -81,13 +82,13 @@ npm start
 
 ## API endpoints
 
-| Method | Path | Description |
-|--------|------|-------------|
-| `GET` | `/api/health` | Health check |
-| `POST` | `/api/scrape` | Start a scrape job |
-| `GET` | `/api/jobs` | List all jobs |
-| `GET` | `/api/jobs/:id` | Get a job (status + results) |
-| `GET` | `/api/jobs/:id/download/csv` | Download the job's CSV |
+| Method | Path                         | Description                  |
+| ------ | ---------------------------- | ---------------------------- |
+| `GET`  | `/api/health`                | Health check                 |
+| `POST` | `/api/scrape`                | Start a scrape job           |
+| `GET`  | `/api/jobs`                  | List all jobs                |
+| `GET`  | `/api/jobs/:id`              | Get a job (status + results) |
+| `GET`  | `/api/jobs/:id/download/csv` | Download the job's CSV       |
 
 ### `POST /api/scrape`
 
@@ -112,6 +113,8 @@ Every completed job writes two files to `scraped-output/`:
 - `keyword-location-<timestamp>.json`
 
 CSV columns: `Keyword, Location, Business Name, Category, Address, Phone, Website, Google Maps URL, Rating, Review Count, Hours, Email, Emails, Contact Page`.
+
+JSON output is now a CRM-friendly array with fields like `businessName`, `niche`, `city`, `website`, `email`, `phone`, `googleMapsUrl`, `rating`, `reviews`, `websiteStatus`, `mobileStatus`, `bookingSystem`, `mainProblem`, `leadTemperature`, `finalStatus`, `dealValue`, `source`, and `notes`.
 
 ## Important notes / caveats
 
@@ -145,4 +148,5 @@ gmapscraper/
 - **Headless vs headed** — set `headless: false` in `scraper.js` to watch the browser work (helpful for debugging).
 - **Selector updates** — if Google changes its UI, adjust `div[role="feed"] > div > div > a` and the `APP_INITIALIZATION_STATE` parsing in `scraper.js`.
 - **Persistence** — `jobStore.js` is in-memory; swap for MongoDB/Redis if you need results to survive restarts.
+
 # Google-Maps-Lead-Scraper
